@@ -65,9 +65,9 @@ connection.query('SELECT * FROM your_table', (err, results, fields) => {
 // Close the connection
 connection.end();
 
-// how to get the database entries if working through node 
-app.get('/users', (req, res) => {
-    connection.query('SELECT * FROM users', (err, results) => {
+// how to get the database entries if working through node (example)
+app.get('/Responses', (req, res) => {
+    connection.query('SELECT * FROM Responses WHERE Question1 LIKE ?', (err, results) => {
       if (err) {
         console.error('Error executing query:', err);
         res.status(500).send('Internal Server Error');
@@ -76,3 +76,17 @@ app.get('/users', (req, res) => {
       res.json(results);
     });
   });
+
+// example of POST method to add information to the database
+app.post("/Responses", jsonParser, function (req, res) {
+    var userID = req.body.id;
+    var question1 = req.body.q1;
+    var question2 = req.body.q2;
+    connection.query("INSERT INTO Responses (userID,question1,question2) VALUES (?,?,?)", [id, q1, q2], function (error, results, fields) {
+        if (error)
+            throw error;
+        res.send(JSON.stringify({ "message": true, "result": results }));
+    });
+});
+
+// can copy the get method to get certain entries from the database (where certain questions are equal, etc)

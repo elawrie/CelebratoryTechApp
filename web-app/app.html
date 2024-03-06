@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disco Ball App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="welcome-section" class="section">
+        <h1 class="title">WELCOME TO THE DISCO BALL</h1>
+        <p class="tagline">Celebratory Technology</p>
+        <div class="disco-ball-container" id="svgContainer">
+            <!-- The SVG will be injected into this container -->
+        </div>
+        <div class="start-container">
+            <p>Are you ready to start?</p>
+            <button id="start-button" class="start-button">Start</button>
+        </div>
+    </div>
+    
+    <!-- This container will be filled with questions dynamically -->
+    <div id="questions-container"></div>
+
+    <!-- Container where the cloned and updated SVG will be displayed -->
+    <div id="svgDisplayContainer" class="disco-ball-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

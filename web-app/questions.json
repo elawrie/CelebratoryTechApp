@@ -1,0 +1,122 @@
+[
+    {
+      "question": "Placeholder Question Number 1?",
+      "answers": [
+        "Place Holder Answer",
+        "Example Answer",
+        "Kinesthetic",
+        "Reading/Writing"
+      ]
+    },
+    {
+      "question": "What's your primary superpower?",
+      "answers": [
+        "I can detect people's moods",
+        "I work well under pressure",
+        "I have high focus abilities",
+        "I am good at streamlining tasks for simplicity",
+        "I have a good attention to detail"
+      ]
+    },
+    {
+      "question": "What is your current occupation?",
+      "answers": [
+        "Education / Student",
+        "Self-Employed",
+        "Industry professional",
+        "Not employed",
+        "Other"
+      ]
+    },
+    {
+      "question": "Have you overcome or witnessed great adversity?",
+      "answers": [
+        "Survivor (it me)",
+        "Witness (it was someone I know personally)",
+        "Ally (don't know someone but I still support them)",
+        "Prefer Not to Say",
+        "Other"
+      ]
+    },
+    {
+      "question": "What sounds like your ideal way to spend your free time?",
+      "answers": [
+        "Traveling",
+        "Spending time in the great outdoors",
+        "Going out with friends",
+        "Chilling at home",
+        "I don't have free time"
+      ]
+    },
+    {
+      "question": "Favorite Pizza Topping?",
+      "answers": [
+        "Pepperoni /Meat Man",
+        "Veggies /Gotta be Healthy",
+        "Plain /I don't do toppings",
+        "Other toppings",
+        "I don't like Pizza"
+      ]
+    },
+    {
+      "question": "Where did you grow up?",
+      "answers": [
+        "Grew up in the Bay Area",
+        "Enjoyed the SoCal lifestyle",
+        "Originated from another US State",
+        "Started life in a different country",
+        "Other (share your unique upbringing)"
+      ]
+    },
+    {
+      "question": "Which one of these words best describes your communication styles?",
+      "answers": [
+        "Peaceful",
+        "Independent",
+        "Conventional",
+        "Social"
+      ]
+    },
+    {
+      "question": "What's your favorite genre for movies/books?",
+      "answers": [
+        "Fantasy / Sci-Fi",
+        "Thriller / Mystery",
+        "Nonfiction",
+        "Action / Adventure",
+        "Comedy"
+      ]
+    },
+    {
+      "question": "How would you describe your fashion style?",
+      "answers": [
+        "Casual and comfortable",
+        "Trendy and fashionable",
+        "Vintage and retro",
+        "Professional and polished",
+        "Alternative Styles"
+      ]
+    },
+    {
+      "question": "Hypothetical Situation: Your friend just got news that a close loved one was in an accident, what's your first step?",
+      "answers": [
+        "Ask them if they're okay, tell them you're here for them",
+        "Offer to drive them to the scene",
+        "Give them a gift or token of support",
+        "Offer a shoulder to lean on and offer an ear",
+        "Offer a comforting hug"
+      ]
+    },
+    {
+      "question": "How Do You Show Allyship Regarding Accommodations?",
+      "answers": [
+        "Educate Myself and Ask Questions: I actively seek knowledge about various types of accommodations and disabilities.",
+        "Listen Actively: I listen empathetically to individuals' accommodation needs and experiences.",
+        "Respect Privacy: I respect individuals' choices regarding disclosure of their accommodation needs.",
+        "Advocate for Inclusivity: I promote and advocate for inclusive practices and policies.",
+        "Offer Assistance: I offer my assistance when I notice someone struggling with accommodation-related challenges."
+      ]
+    }
+]
+  
+  

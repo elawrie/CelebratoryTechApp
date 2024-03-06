@@ -1,0 +1,121 @@
+.section {
+    text-align: center;
+    font-family: 'Arial', sans-serif; /* Example font */
+}
+
+.title {
+    font-size: 2em; /* Example size */
+    margin-bottom: 0.5em;
+    color: #333; /* Example color */
+    text-align: center;
+}
+
+.tagline {
+    margin-bottom: 1em;
+    color: #555; /* Example color */
+    text-align: center;
+}
+
+/* This is the parent container for the SVG. */
+.disco-ball-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+  }
+  
+
+/* Styling for the SVG itself. */
+.disco-ball-container svg {
+    display: block;
+    margin: auto; /* Centers the SVG in the container */
+    width: 50vw; /* Example: 50% of the viewport width */
+    height: 50vw; /* Example: same as width to maintain aspect ratio */
+    max-width: 100%; /* Ensures the SVG doesn't overflow its container */
+    max-height: 100%; /* Ensures the SVG doesn't overflow its container */
+  }
+  
+
+.question-container {
+    margin: 20px;
+}
+
+
+
+.start-button {
+    background-color: #007bff; /* Light grey background */
+    color: white; /* White text */
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 20px; /* Rounded corners */
+    padding: 10px 20px;
+    margin: 5px; /* Spacing between buttons */
+    display: block; /* Stack buttons vertically */
+    width: calc(100% - 42px); /* Full width taking into account padding and border */
+    box-sizing: border-box; /* Include padding and border in the width */
+    cursor: pointer; /* Hand cursor on hover */
+}
+
+.answer-button, .next-button {
+    background-color: #f0f0f0; /* Light grey background */
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 20px; /* Rounded corners */
+    padding: 10px 20px;
+    margin: 5px; /* Spacing between buttons */
+    display: block; /* Stack buttons vertically */
+    width: calc(100% - 42px); /* Full width taking into account padding and border */
+    box-sizing: border-box; /* Include padding and border in the width */
+    cursor: pointer; /* Hand cursor on hover */
+}
+
+.answer-button {
+    /* Your existing styles */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+  }
+  
+.answer-button.selected {
+background-color: #007bff; /* Chosen highlight color for selected answer */
+color: white; /* Text color for selected answer */
+border-color: #007bff; /* Border color for selected answer */
+}
+  
+
+.start-button:hover, .answer-button:hover, .next-button:hover {
+    background-color: #e9e9e9; /* Slightly darker grey on hover */
+}
+
+.selected-answer {
+    background-color: #007bff; /* Highlight color for selected answer */
+    color: white;
+}
+
+.hidden {
+    display: none; /* Keep this to hide elements initially */
+}
+
+/* Additional styles for better layout and spacing */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7; /* Light background for the page */
+}
+
+/* Container for centering the content */
+.container {
+    max-width: 800px; /* Example max width */
+    margin: auto;
+    padding: 20px;
+}
+
+/* Style the next button to be more prominent */
+.next-button {
+    background-color: #007bff; /* Use a distinct color */
+    color: white; /* White text */
+    font-weight: bold; /* Make it bold */
+    margin-top: 20px; /* Add space above the button */
+}
+
+/* Make sure the answer buttons are aligned nicely */
+.answers {
+    text-align: left; /* Align the text to the left */
+}

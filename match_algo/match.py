@@ -6,7 +6,7 @@ participants = [i for i in range(1, 21)]
 # round 1: random
 # 20 participants, sectioned into 5 groups of 4
 generated = [0,0,0,0,0]
-groups = [[],[],[],[],[]]
+groups_round1_random = [[],[],[],[],[]]
 
 # loop through all participants
 for j in range(20):
@@ -14,19 +14,19 @@ for j in range(20):
     rand_num = random.randint(0, 4)
 
     # check if the group corresponding to the random number has less than 4 elements
-    if len(groups[rand_num]) < 4:
+    if len(groups_round1_random[rand_num]) < 4:
         # if yes, append the current index to that group
-        groups[rand_num].append(j)
+        groups_round1_random[rand_num].append(j)
         generated[rand_num] += 1
 
     # if the group has already been filled with 4 elements, pick a different random number
     else:
-        while len(groups[rand_num]) >= 4:
+        while len(groups_round1_random[rand_num]) >= 4:
             rand_num = random.randint(0, 4)
-        groups[rand_num].append(j)
+        groups_round1_random[rand_num].append(j)
         generated[rand_num] += 1
 
-print("Groups Round 1:", groups)
+print("Groups Round 1:", groups_round1_random)
 
 # import the data from the database 
 
@@ -68,7 +68,7 @@ for value in top_matches.values():
 # find the top 4 MOST present nodes
 sorted_dict = dict(sorted(frequencies.items(), key=lambda item: item[1], reverse=True))
 
-top_four = dict(sorted_dict[:4])
+top_five = dict(sorted_dict[:5])
 
 # assign all top nodes to different groups
 
@@ -81,12 +81,52 @@ groups = []
 # group all the nodes by their connection to the central nodes 
 top_connections = {}
 
+for key in top_five.keys():
+    top_connections[key] = []
 
+stragglers = []
 
-for value in top_matches.keys():
-    for key in top_four.keys():
-        if 
+for key in top_matches:
+    if key not in top_connections.values():
+        stragglers.append(key)
 
-# skip over duplicates
+# check if one of the central nodes is in the top 3 of any of the nodes 
+for key,value_list in top_matches.items():
+    for top_key in top_five.keys():
+        if top_key in value_list:
+            # add the key of the values list in which the central node appears 
+            top_connections[top_key].append(key)
+
+# assign to groups! 
+groups_round3_best = [[],[],[],[],[]]
+
+# FROM CHATGPT 
+
+# Iterate through the dictionary
+for key, values_list in top_connections.items():
+    # Iterate through the values list
+    for item in values_list:
+        # Check if the item is unique
+        # skip over duplicates
+        if item not in sum(top_connections.values(), []):
+            # Add the item to the list corresponding to its key in the nested list
+            groups_round3_best[list(top_connections.keys()).index(key)].append(item)
+            # remove the value
+            values_list.remove(item)
 
 # assign stragglers and duplicates 
+i = 0
+j = 0
+for l in groups_round3_best:
+    while len(l) < 4:
+        # add the duplicate connections
+        l.append(top_connections[l[0][i]])
+        ++i
+        if len(l) >= 4:
+            break
+        # add the nodes that did not match with any central node
+        l.append(stragglers[j])
+        ++j
+
+print("Group 3 (Best Matches): ", groups_round3_best)
+        

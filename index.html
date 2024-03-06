@@ -3,6 +3,13 @@
     <head>
         <meta charSet="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="Content-Security-Policy" content="
+            default-src 'self';
+            img-src 'self' http://127.0.0.1:5500;
+            script-src 'self' 'unsafe-inline' http://127.0.0.1:5500;
+            font-src 'self' data:;
+            style-src 'self' 'unsafe-inline';
+        ">
         <link rel="preload" href="/_next/static/media/0e4fe491bf84089c-s.p.woff2" as="font" crossorigin="" type="font/woff2"/>
         <link rel="preload" href="/_next/static/media/627622453ef56b0d-s.p.woff2" as="font" crossorigin="" type="font/woff2"/>
         <link rel="preload" href="/_next/static/media/8db47a8bf03b7d2f-s.p.woff2" as="font" crossorigin="" type="font/woff2"/>

@@ -44,26 +44,30 @@ cursor = connection.cursor()
 # based on MIXED communication styles (across the spectrum of different answers)
 
 # Construct the SQL query to fetch user response
-user_response = '''
-    SELECT * FROM Responses WHERE UserID = '{}'
-    '''.format(user_id)
-cursor.execute(user_response)
-user_answer = cursor.fetchone()
+users = {}
 
-query = '''
-SELECT UserID,
-    (CASE WHEN Question1 = '{0}' THEN 1 ELSE 0 END +
-        CASE WHEN Question8 = '{1}' THEN 1 ELSE 0 END +
-        CASE WHEN Question11 = '{2}' THEN 1 ELSE 0 END +
-        CASE WHEN Question21 = '{3}' THEN 1 ELSE 0 END) AS match_score
-FROM Responses
-WHERE UserID != '{4}'
-ORDER BY match_score ASC
-LIMIT 3;
-'''.format(user_answer[1], user_answer[8], user_answer[11], user_answer[21], user_id )
+for i in range(1, 21):
+    user_id = '{:03d}'.format(i)
+    user_response = '''
+        SELECT * FROM Responses WHERE UserID = '{}'
+        '''.format(user_id)
+    cursor.execute(user_response)
+    user_answer = cursor.fetchone()
 
-cursor.execute(query)
-user_match = cursor.fetchall()
+    query = '''
+    SELECT UserID,
+        (CASE WHEN Question1 = '{0}' THEN 1 ELSE 0 END +
+            CASE WHEN Question8 = '{1}' THEN 1 ELSE 0 END +
+            CASE WHEN Question11 = '{2}' THEN 1 ELSE 0 END +
+            CASE WHEN Question21 = '{3}' THEN 1 ELSE 0 END) AS match_score
+    FROM Responses
+    WHERE UserID != '{4}'
+    ORDER BY match_score ASC
+    LIMIT 3;
+    '''.format(user_answer[1], user_answer[8], user_answer[11], user_answer[21], user_id )
+
+    cursor.execute(query)
+    user_match = cursor.fetchall()
 
 # Round 3
 # based on CLOSEST matches (participants who are the most similar in their answers)
@@ -98,46 +102,50 @@ top_matches = {"001":[2,2,2,3,2,3,2,1,4,1,2,3,1,2,4,2,3,1,2,2,3,3,4,4],
 #     top_matches[user_id] = QUERY
 
 # find the frequencies of all nodes (how often they appear in top 3 groupings)
-user_response = '''
-    SELECT * FROM Responses WHERE UserID = '{}'
-    '''.format(user_id)
-cursor.execute(user_response)
-user_answer = cursor.fetchone()
+users = {}
 
-query = '''
-    SELECT UserID,
-        (CASE WHEN Question1 = '{0}' THEN 1 ELSE 0 END +
-            CASE WHEN Question2 = '{1}' THEN 1 ELSE 0 END +
-            CASE WHEN Question3 = '{2}' THEN 1 ELSE 0 END +
-            CASE WHEN Question4 = '{3}' THEN 1 ELSE 0 END +
-            CASE WHEN Question5 = '{4}' THEN 1 ELSE 0 END +
-            CASE WHEN Question6 = '{5}' THEN 1 ELSE 0 END +
-            CASE WHEN Question7 = '{6}' THEN 1 ELSE 0 END +
-            CASE WHEN Question8 = '{7}' THEN 1 ELSE 0 END +
-            CASE WHEN Question9 = '{8}' THEN 1 ELSE 0 END +
-            CASE WHEN Question10 = '{9}' THEN 1 ELSE 0 END +
-            CASE WHEN Question11 = '{10}' THEN 1 ELSE 0 END +
-            CASE WHEN Question12 = '{11}' THEN 1 ELSE 0 END +
-            CASE WHEN Question13 = '{12}' THEN 1 ELSE 0 END +
-            CASE WHEN Question14 = '{13}' THEN 1 ELSE 0 END +
-            CASE WHEN Question15 = '{14}' THEN 1 ELSE 0 END +
-            CASE WHEN Question16 = '{15}' THEN 1 ELSE 0 END +
-            CASE WHEN Question17 = '{16}' THEN 1 ELSE 0 END +
-            CASE WHEN Question18 = '{17}' THEN 1 ELSE 0 END +
-            CASE WHEN Question19 = '{18}' THEN 1 ELSE 0 END +
-            CASE WHEN Question20 = '{19}' THEN 1 ELSE 0 END +
-            CASE WHEN Question21 = '{20}' THEN 1 ELSE 0 END +
-            CASE WHEN Question22 = '{21}' THEN 1 ELSE 0 END +
-            CASE WHEN Question23 = '{22}' THEN 1 ELSE 0 END +
-            CASE WHEN Question24 = '{23}' THEN 1 ELSE 0 END) AS match_score
-    FROM Responses
-    WHERE UserID != '{24}'
-    ORDER BY match_score DESC
-    LIMIT 3;
-    '''.format(user_answer[1], user_answer[2], user_answer[3], user_answer[4], user_answer[5], user_answer[6], user_answer[7], user_answer[8], user_answer[9], user_answer[10], user_answer[11], user_answer[12], user_answer[13], user_answer[14], user_answer[15], user_answer[16], user_answer[17], user_answer[18], user_answer[19], user_answer[20], user_answer[21], user_answer[22], user_answer[23], user_answer[24], user_id )
+for i in range(1, 21):
+    user_id = '{:03d}'.format(i)
+    user_response = '''
+        SELECT * FROM Responses WHERE UserID = '{}'
+        '''.format(user_id)
+    cursor.execute(user_response)
+    user_answer = cursor.fetchone()
 
-cursor.execute(query)
-user_match = cursor.fetchall()
+    query = '''
+        SELECT UserID,
+            (CASE WHEN Question1 = '{0}' THEN 1 ELSE 0 END +
+                CASE WHEN Question2 = '{1}' THEN 1 ELSE 0 END +
+                CASE WHEN Question3 = '{2}' THEN 1 ELSE 0 END +
+                CASE WHEN Question4 = '{3}' THEN 1 ELSE 0 END +
+                CASE WHEN Question5 = '{4}' THEN 1 ELSE 0 END +
+                CASE WHEN Question6 = '{5}' THEN 1 ELSE 0 END +
+                CASE WHEN Question7 = '{6}' THEN 1 ELSE 0 END +
+                CASE WHEN Question8 = '{7}' THEN 1 ELSE 0 END +
+                CASE WHEN Question9 = '{8}' THEN 1 ELSE 0 END +
+                CASE WHEN Question10 = '{9}' THEN 1 ELSE 0 END +
+                CASE WHEN Question11 = '{10}' THEN 1 ELSE 0 END +
+                CASE WHEN Question12 = '{11}' THEN 1 ELSE 0 END +
+                CASE WHEN Question13 = '{12}' THEN 1 ELSE 0 END +
+                CASE WHEN Question14 = '{13}' THEN 1 ELSE 0 END +
+                CASE WHEN Question15 = '{14}' THEN 1 ELSE 0 END +
+                CASE WHEN Question16 = '{15}' THEN 1 ELSE 0 END +
+                CASE WHEN Question17 = '{16}' THEN 1 ELSE 0 END +
+                CASE WHEN Question18 = '{17}' THEN 1 ELSE 0 END +
+                CASE WHEN Question19 = '{18}' THEN 1 ELSE 0 END +
+                CASE WHEN Question20 = '{19}' THEN 1 ELSE 0 END +
+                CASE WHEN Question21 = '{20}' THEN 1 ELSE 0 END +
+                CASE WHEN Question22 = '{21}' THEN 1 ELSE 0 END +
+                CASE WHEN Question23 = '{22}' THEN 1 ELSE 0 END +
+                CASE WHEN Question24 = '{23}' THEN 1 ELSE 0 END) AS match_score
+        FROM Responses
+        WHERE UserID != '{24}'
+        ORDER BY match_score DESC
+        LIMIT 3;
+        '''.format(user_answer[1], user_answer[2], user_answer[3], user_answer[4], user_answer[5], user_answer[6], user_answer[7], user_answer[8], user_answer[9], user_answer[10], user_answer[11], user_answer[12], user_answer[13], user_answer[14], user_answer[15], user_answer[16], user_answer[17], user_answer[18], user_answer[19], user_answer[20], user_answer[21], user_answer[22], user_answer[23], user_answer[24], user_id )
+
+    cursor.execute(query)
+    user_match = cursor.fetchall()
 # key = ID, value = hits in the top matches dictionary 
 # EXAMPLE OF DATA: {"004": 4}
 

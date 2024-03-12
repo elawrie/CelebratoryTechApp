@@ -1,32 +1,32 @@
 import random
 
-# matching algorithm for iterations of participant kahoot testing
-participants = [i for i in range(1, 21)]
+# # matching algorithm for iterations of participant kahoot testing
+# participants = [i for i in range(1, 21)]
 
-# round 1: random
-# 20 participants, sectioned into 5 groups of 4
-generated = [0,0,0,0,0]
-groups_round1_random = [[],[],[],[],[]]
+# # round 1: random
+# # 20 participants, sectioned into 5 groups of 4
+# generated = [0,0,0,0,0]
+# groups_round1_random = [[],[],[],[],[]]
 
-# loop through all participants
-for j in range(20):
-    # generate a random number between 0 and 4
-    rand_num = random.randint(0, 4)
+# # loop through all participants
+# for j in range(20):
+#     # generate a random number between 0 and 4
+#     rand_num = random.randint(0, 4)
 
-    # check if the group corresponding to the random number has less than 4 elements
-    if len(groups_round1_random[rand_num]) < 4:
-        # if yes, append the current index to that group
-        groups_round1_random[rand_num].append(j)
-        generated[rand_num] += 1
+#     # check if the group corresponding to the random number has less than 4 elements
+#     if len(groups_round1_random[rand_num]) < 4:
+#         # if yes, append the current index to that group
+#         groups_round1_random[rand_num].append(j)
+#         generated[rand_num] += 1
 
-    # if the group has already been filled with 4 elements, pick a different random number
-    else:
-        while len(groups_round1_random[rand_num]) >= 4:
-            rand_num = random.randint(0, 4)
-        groups_round1_random[rand_num].append(j)
-        generated[rand_num] += 1
+#     # if the group has already been filled with 4 elements, pick a different random number
+#     else:
+#         while len(groups_round1_random[rand_num]) >= 4:
+#             rand_num = random.randint(0, 4)
+#         groups_round1_random[rand_num].append(j)
+#         generated[rand_num] += 1
 
-print("Groups Round 1:", groups_round1_random)
+# print("Groups Round 1:", groups_round1_random)
 
 # import the data from the database 
 
@@ -43,11 +43,33 @@ print("Groups Round 1:", groups_round1_random)
 # based on CLOSEST matches (participants who are the most similar in their answers)
 
 # EXAMPLE OF DATA: {"001": ["002","004","007"], "002": ["003","006","019"] }
-top_matches = {}
+# top_matches = {}
+
+# example of data
+top_matches = {"001":[2,2,2,3,2,3,2,1,4,1,2,3,1,2,4,2,3,1,2,2,3,3,4,4],
+"002":[3,2,4,1,2,3,4,3,2,1,2,3,4,3,4,2,1,2,3,2,1,1,1,1],
+"003":[2,1,4,3,2,1,3,2,4,1,2,3,2,1,2,1,2,3,4,3,2,1,2,1],
+"004":[2,1,2,4,3,3,2,1,2,3,4,1,2,3,1,2,1,2,4,3,2,3,4,1],
+"005":[3,3,2,2,2,3,4,1,2,2,1,3,4,2,1,2,4,3,2,3,2,1,3,1],
+"006":[4,4,3,3,2,1,4,3,2,3,1,1,3,4,2,1,1,2,3,2,1,2,3,2],
+"007":[1,2,4,3,2,3,2,1,2,2,4,4,3,2,1,2,3,4,4,3,2,2,3,1],
+"008":[1,2,2,1,3,4,3,2,1,2,3,4,3,2,2,1,2,1,1,4,3,2,1,1],
+"009":[2,1,3,1,2,4,3,2,3,2,3,4,1,2,3,4,2,3,4,5,3,2,4,2],
+"010":[1,2,3,1,4,3,2,1,2,3,4,2,1,2,3,4,1,1,2,2,3,3,4,1],
+"011":[3,2,4,1,2,4,3,3,1,1,1,4,2,3,3,2,4,4,2,3,3,2,1,4],
+"012":[4,2,1,2,3,3,4,2,3,1,2,1,2,3,4,3,2,1,2,3,4,1,2,4],
+"013":[1,3,4,2,3,4,4,3,1,3,2,1,4,3,1,2,4,4,3,4,1,2,3,4],
+"014":[4,2,3,4,1,2,3,3,2,2,2,1,2,3,4,4,4,2,1,1,1,2,3,4],
+"015":[1,1,1,4,4,2,2,3,4,1,2,3,3,2,2,2,4,4,1,2,3,4,2,3],
+"016":[2,3,4,2,1,2,3,2,1,2,3,4,3,2,1,2,3,4,3,2,1,1,3,4],
+"017":[3,2,1,2,3,4,3,2,1,2,3,2,1,2,2,2,3,2,1,2,3,4,2,1],
+"018":[1,2,3,2,1,2,1,2,3,4,2,3,2,3,4,3,2,1,3,3,2,1,2,3],
+"019":[3,3,4,3,2,1,2,3,2,3,2,1,2,3,2,1,2,3,4,1,2,1,2,1],
+"020":[2,1,2,3,4,4,3,3,2,1,2,3,4,3,2,1,2,3,4,4,3,2,1,1]}
 
 # group the three closest nodes to each node in arrays
-for user_id in queries:
-    top_matches[user_id] = QUERY RESPONSE 
+# for user_id in queries:
+#     top_matches[user_id] = QUERY
 
 # find the frequencies of all nodes (how often they appear in top 3 groupings)
 
@@ -68,7 +90,18 @@ for value in top_matches.values():
 # find the top 4 MOST present nodes
 sorted_dict = dict(sorted(frequencies.items(), key=lambda item: item[1], reverse=True))
 
-top_five = dict(sorted_dict[:5])
+# Convert the sorted dictionary to a list of tuples
+sorted_list = list(sorted_dict.items())
+# find the top 5 nodes
+sorted_list = sorted_list[:5]
+
+top_five = {}
+
+# Extract the keys of the top 5 entries
+for key,value in sorted_dict.items():
+    if value in top_five:
+        top_five[key] = value
+
 
 # assign all top nodes to different groups
 
@@ -119,14 +152,15 @@ i = 0
 j = 0
 for l in groups_round3_best:
     while len(l) < 4:
-        # add the duplicate connections
-        l.append(top_connections[l[0][i]])
-        ++i
-        if len(l) >= 4:
-            break
+        # theres an issue with this --> improper indexing
+        # # add the duplicate connections
+        # l.append(top_connections[l][i]) # giving error
+        # i += 1
+        # if len(l) >= 4:
+        #     break
         # add the nodes that did not match with any central node
         l.append(stragglers[j])
-        ++j
+        j += 1
 
 print("Group 3 (Best Matches): ", groups_round3_best)
         

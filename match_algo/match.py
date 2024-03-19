@@ -6,37 +6,37 @@ user_home_dir = os.path.expanduser("~")
 db_file_path = os.path.join(user_home_dir, "test.db")
 
 # Establish a connection to the SQLite database
-connection = sqlite3.connect("Responses.sql")
+connection = sqlite3.connect("mydatabase.db")
 
 # Create a cursor object
 cursor = connection.cursor()
-# # matching algorithm for iterations of participant kahoot testing
-# participants = [i for i in range(1, 21)]
+# matching algorithm for iterations of participant kahoot testing
+participants = [i for i in range(1, 21)]
 
-# # round 1: random
-# # 20 participants, sectioned into 5 groups of 4
-# generated = [0,0,0,0,0]
-# groups_round1_random = [[],[],[],[],[]]
+# round 1: random
+# 20 participants, sectioned into 5 groups of 4
+generated = [0,0,0,0,0]
+groups_round1_random = [[],[],[],[],[]]
 
-# # loop through all participants
-# for j in range(20):
-#     # generate a random number between 0 and 4
-#     rand_num = random.randint(0, 4)
+# loop through all participants
+for j in range(20):
+    # generate a random number between 0 and 4
+    rand_num = random.randint(0, 4)
 
-#     # check if the group corresponding to the random number has less than 4 elements
-#     if len(groups_round1_random[rand_num]) < 4:
-#         # if yes, append the current index to that group
-#         groups_round1_random[rand_num].append(j)
-#         generated[rand_num] += 1
+    # check if the group corresponding to the random number has less than 4 elements
+    if len(groups_round1_random[rand_num]) < 4:
+        # if yes, append the current index to that group
+        groups_round1_random[rand_num].append(j)
+        generated[rand_num] += 1
 
-#     # if the group has already been filled with 4 elements, pick a different random number
-#     else:
-#         while len(groups_round1_random[rand_num]) >= 4:
-#             rand_num = random.randint(0, 4)
-#         groups_round1_random[rand_num].append(j)
-#         generated[rand_num] += 1
+    # if the group has already been filled with 4 elements, pick a different random number
+    else:
+        while len(groups_round1_random[rand_num]) >= 4:
+            rand_num = random.randint(0, 4)
+        groups_round1_random[rand_num].append(j)
+        generated[rand_num] += 1
 
-# print("Groups Round 1:", groups_round1_random)
+print("Groups Round 1:", groups_round1_random)
 
 # import the data from the database 
 
@@ -84,9 +84,11 @@ for i in range(1, 21):
 # find the frequencies of all nodes (how often they appear in top 3 groupings)
 users = {}
 top_matches = {}
+top_matches = {}
 
 for i in range(1, 21):
     user_id = '{:03d}'.format(i)
+
 
     user_response = '''
         SELECT * FROM Responses WHERE UserID = '{}'
@@ -123,7 +125,7 @@ for i in range(1, 21):
         FROM Responses
         WHERE UserID != '{24}'
         ORDER BY match_score DESC
-        LIMIT 3;
+        LIMIT 5;
         '''.format(user_answer[1], user_answer[2], user_answer[3], user_answer[4], user_answer[5], user_answer[6], user_answer[7], user_answer[8], user_answer[9], user_answer[10], user_answer[11], user_answer[12], user_answer[13], user_answer[14], user_answer[15], user_answer[16], user_answer[17], user_answer[18], user_answer[19], user_answer[20], user_answer[21], user_answer[22], user_answer[23], user_answer[24], user_id )
 
     cursor.execute(query)
@@ -134,6 +136,10 @@ for i in range(1, 21):
 
 # key = ID, value = hits in the top matches dictionary 
 # EXAMPLE OF DATA: {"004": 4}
+
+# Prints out the users results from query
+# print("USERS", users) 
+
 for user_id in users:
     top_matches[user_id] = users[user_id]
 
@@ -148,6 +154,7 @@ for value in top_matches.values():
         else:
             frequencies[element] = 1
 
+
 # print("FREQ", frequencies)
 
 # find the top 4 MOST present nodes
@@ -158,6 +165,7 @@ sorted_list = list(sorted_dict.keys())
 # find the top 5 nodes
 sorted_list = sorted_list[:5]
 
+
 # print("SORTED", sorted_list)
 
 top_five = {}
@@ -167,7 +175,8 @@ for key,value in sorted_dict.items():
     if key in sorted_list:
         top_five[key] = value
 
-print("TOP 5",top_five)
+
+# print("TOP 5",top_five)
 # assign all top nodes to different groups
 
 groups = []
@@ -190,24 +199,14 @@ for key,value_list in top_matches.items():
 # assign to groups! 
 groups_round3_best = [[],[],[],[],[]]
 
-# FROM CHATGPT 
-
-# stragglers = []
-
-# find the nodes that are not in the top 5
-# for key in top_matches.keys():
-#     if key not in top_five.keys() and key not in top_five.values():
-#         print("STRAGGLER", key)
-#         stragglers.append(key)
-
 # print top matches
-print("TOP MATCHES", top_matches)
+# print("TOP MATCHES", top_matches)
 
 # Numbers from 1 to 20
 numbers = range(1, 21)
 
 # Check for missing numbers in values
-print("VALUES OF TOP 5", top_five.values())
+# print("VALUES OF TOP 5", top_five.values())
 missing_values = [num for num in numbers if not any(num in sublist for sublist in top_connections.values())]
 # check if any of the missing values is a central node (key in top_connections)
 for num in missing_values:
@@ -215,7 +214,7 @@ for num in missing_values:
         missing_values.remove(num)
 
 
-print("Missing numbers in values:", missing_values)
+# print("Missing numbers in values:", missing_values)
 
 # Iterate through the dictionary
 # keep track of current group in groups 
@@ -231,85 +230,76 @@ for key, values_list in top_connections.items():
 
         # Check if the item is unique
         # skip over duplicates
-        # check if element in values_list does not appear in any other key's values list
-        if sum([item in v for k, v in top_connections.items() if k != key]) == 0 and item not in top_connections.keys():
-            # put the item in the group with the corresponding key
-            groups_round3_best[k].append(item)
-            
-            # remove singular item from top_connections dictionary 
-            top_connections[key].remove(item)
-            
-            # # Find the group with the fewest members
-            
-            # min_group = min(groups_round3_best, key=len)
-            # # Add the item to the group
-            # min_group.append(item)
-
-            
-
-    k += 1
 
 
 
 
-print("TOP CONNECTIONS AFTER REMOVAL", top_connections)
+# print("TOP CONNECTIONS AFTER REMOVAL", top_connections)
     
-print("GROUPS ROUND 3 BEST ONLY UNIQUE", groups_round3_best)
+# print("GROUPS ROUND 3 BEST ONLY UNIQUE", groups_round3_best)
 
-# assign stragglers and duplicates 
-i = 0
-j = 0
+# print("TOP",top_connections)
 
-# for l in groups_round3_best:
-    # key = l[0]
-    # # print("CURRENT KEY: ", key)
-    # while len(l) < 4:
-    #     # check if list out of range
-    #     while i < 5:
-    #         # print out the current group
-    #         # print("CURRENT GROUP: ", l)
-    #         # print top connections
-            
-    #         # print current key
-    #         # print("CURRENT KEY: ", key)
-    #     # theres an issue with this --> improper indexing
-    #     # # add the duplicate connections
-    #     # from top_connections, add next item corresponding to the group 
-    #     # print("CURRENT KEY'S CONNECTIONS: ", top_connections[key])
-    #     # print("CURRENT VAL TO ADD: ", top_connections[key][i])
-    #     # check if current value is a central node
-    #         if top_connections[key][i] in top_connections.keys():
-    #             top_connections[key].remove(top_connections[key][i])
-    #         # i -= 1
-    #         # print out the value of i
-    #             print("I: ", i)
-    #             continue
-    #         val_to_add = top_connections[key][i]
-    #         l.append(val_to_add) 
-    #         # remove the added value from the dictionary
-    #         for key in top_connections.keys():
-    #             if val_to_add in top_connections[key]:
-    #                 top_connections[key].remove(val_to_add)
+# Get keys sorted in reverse order
+sorted_keys = sorted(top_connections.keys(), reverse=True)
 
-    #         i += 1
-    #         print("CURRENT GROUP: ", l)
-    #     if len(l) >= 4:
-    #         break
-    #     # add the nodes that did not match with any central node
-    #     if j >= len(missing_values):
-    #         # print current key
-    #         # print("CURRENT KEY STRAGGLER: ", key)
-    #         break
-    #     l.append(missing_values[j])
-    #     missing_values.remove(missing_values[j])
-    #     j += 1
-    #     print("TOP CONNECTIONS IN LOOP", top_connections)
-    #     print("CURRENT KEY: ", key)
-    
-    # i = 0
-    # j = 0
+assigned_connections = set()
 
-# print stragglers
+for idx, key in enumerate(sorted_keys):
+    # Add key itself (central node)
+    groups_round3_best[idx].append(key)
+    # Draft-style selection of additional connections
+    for _ in range(3):  # Each group picks 3 additional connections
+        for person in top_connections[key]:
+            if person not in groups_round3_best[idx] and person not in groups_round3_best[(idx + 1) % len(groups_round3_best)] and person not in top_connections.keys():
+                already_picked = False
+                # Check if person is already picked by another team
+                for group in groups_round3_best:
+                    if person in group:
+                        already_picked = True
+                        break
+                if not already_picked:
+                    groups_round3_best[idx].append(person)
+                    break
+
+# Get keys sorted in reverse order
+# Initialize dictionary to store the frequency of appearance of each participant in other teams' connection lists
+participant_frequency = {}
+
+# Iterate through all connections in top_connections to calculate participant frequency
+for key, connections in top_connections.items():
+    for connection in connections:
+        # Increment frequency count for each participant
+        participant_frequency[connection] = participant_frequency.get(connection, 0) + 1
+
+# Sort the participant frequency dictionary based on frequency in ascending order
+sorted_participants = sorted(participant_frequency.items(), key=lambda x: x[1])
+
+# Initialize groups_round3_best
+groups_round3_best = [[], [], [], [], []]
+
+# Iterate over sorted keys
+for idx, key in enumerate(sorted_keys):
+    # Add key itself (central node)
+    groups_round3_best[idx].append(key)
+    # Draft-style selection of additional connections
+    for _ in range(3):  # Each group picks 3 additional connections
+        for person, frequency in sorted_participants:
+            if person not in groups_round3_best[idx] and person not in groups_round3_best[(idx + 1) % len(groups_round3_best)] and person not in top_connections.keys():
+                already_picked = False
+                # Check if person is already picked by another team
+                for group in groups_round3_best:
+                    if person in group:
+                        already_picked = True
+                        break
+                if not already_picked:
+                    groups_round3_best[idx].append(person)
+                    break
+
+# Print the result
+for idx, group in enumerate(groups_round3_best):
+    print(f"Group {idx+1}: {group}")
+
 print("STRAGGLERS: ", missing_values)
 
 print("Group 3 (Best Matches): ", groups_round3_best)

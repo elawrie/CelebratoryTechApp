@@ -269,7 +269,7 @@ j = 0
     #         # print out the current group
     #         # print("CURRENT GROUP: ", l)
     #         # print top connections
-            
+
     #         # print current key
     #         # print("CURRENT KEY: ", key)
     #     # theres an issue with this --> improper indexing

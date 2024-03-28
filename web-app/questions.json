@@ -4,8 +4,8 @@
     "answers": [
       "Visual",
       "Auditory",
-      "Hands On",
-      "Read/Write"
+      "Hands on",
+      "Read/write"
     ]
   },
   {
@@ -21,8 +21,8 @@
   {
     "question": "What is your current occupation?",
     "answers": [
-      "Education / Student",
-      "Self-Employed",
+      "Education/student",
+      "Self-employed",
       "Work at a company or in industry",
       "Not employed",
       "Other"
@@ -31,7 +31,9 @@
   {
     "question": "What is your level of exposure to adversity?",
     "answers": [
-      "I have not experienced much adversity",
+      "I have not experienced adversity",
+      "I have experienced minimal adversity",
+      "I have experienced moderate adversity",
       "I have experienced extensive adversity"
     ]
   },
@@ -68,18 +70,18 @@
     "question": "Are you more of an introvert or an extrovert?",
     "answers": [
       "Introvert",
-      "Semi-Introverted",
-      "Semi-Extroverted",
+      "Semi-introverted",
+      "Semi-extroverted",
       "Extrovert"
     ]
   },
   {
     "question": "What’s your favorite genre for movies/books",
     "answers": [
-      "Fantasy / Sci-Fi",
-      "Thriller / Mystery",
+      "Fantasy/sci-Fi",
+      "Thriller/mystery",
       "Nonfiction",
-      "Action / Adventure",
+      "Action/adventure",
       "Comedy"
     ]
   },
@@ -97,8 +99,8 @@
     "question": "Are you more of an analytical or emotional thinker?",
     "answers": [
       "Analytical",
-      "Semi-Analytical",
-      "Semi-Emotional",
+      "Semi-analytical",
+      "Semi-emotional",
       "Emotional"
     ]
   },
@@ -114,21 +116,27 @@
   {
     "question": "How receptive are you to adapting to unexpected changes in life?",
     "answers": [
-      "Not Open",
-      "Very Open"
+      "Not open",
+      "Somewhat open",
+      "Frequently open",
+      "Always open"
     ]
   },
   {
     "question": "How much of your day do you plan out beforehand?",
     "answers": [
-      "Go with the Flow",
-      "Leave nothing to Chance"
+      "I go with the flow",
+      "I keep loose track of my daily plans",
+      "I plan my schedule to the hour",
+      "I will never stray from my strict plans"
     ]
   },
   {
     "question": "How willing are you to take risks in forming new relationships?",
     "answers": [
       "Never",
+      "Occasionally",
+      "Frequently",
       "Always"
     ]
   },
@@ -155,13 +163,17 @@
     "question": "How often do you like or comment on others’ social media?",
     "answers": [
       "Never",
+      "Once in a while",
+      "Frequently",
       "All the time"
     ]
   },
   {
     "question": "How likely are you to collaborate with someone different from you?",
     "answers": [
+      "Never",
       "Not a lot",
+      "Frequently",
       "As often as I’m able to"
     ]
   },
@@ -169,23 +181,27 @@
     "question": "How often do you give in to peer pressure?",
     "answers": [
       "Never",
-      "Way too often"
+      "Sometimes",
+      "Frequently",
+      "All the time"
     ]
   },
   {
-    "question": "Are you more likely to be motivated by internal factors (satisfaction) or external factors?",
+    "question": "Are you more likely to be motivated by internal factors (satisfaction) or external factors (prizes)?",
     "answers": [
       "Internally",
+      "Mostly internally",
+      "Mostly externally",
       "Externally"
     ]
   },
   {
     "question": "What best describes your sense of humor?",
     "answers": [
-      "Slapstick/Physical",
-      "Dad Jokes/Puns",
-      "Self-Deprecating",
-      "Dark Humor"
+      "Slapstick/physical",
+      "Dad jokes/puns",
+      "Self-deprecating",
+      "Dark humor"
     ]
   },
   {
@@ -200,8 +216,10 @@
   {
     "question": "How often do you interact with people who are different from you?",
     "answers": [
-      "Little to None",
-      "Almost Always"
+      "Never",
+      "Very infrequently",
+      "Often",
+      "Always"
     ]
   }
 ]
